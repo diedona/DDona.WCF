@@ -12,84 +12,126 @@ namespace DDona.WCF.Console
         /*
          * ESTE PROJETO SÓ REFERENCIA O WSERVICE
          * OS MODELS QUE USAMOS NÃO SÃO DO DDONA.WCF.MODEL, SÃO OS PROXIES QUE O DDONA.WCF.WSERVICE GEROU!
-         */ 
+         */
+
+        private static bool Finish = false;
+        private static PersonServiceClient wcfClient = new PersonServiceClient();
 
         static void Main(string[] args)
         {
-            PersonServiceClient wcfClient = new PersonServiceClient();
-
             short Opt = 0;
-            string Name = string.Empty;
-            int Id = 0;
             bool Error = false;
+
+            System.Console.WriteLine("===============================");
+            System.Console.WriteLine("======== TESTES DE WCF ========");
+            System.Console.WriteLine("===============================");
+            System.Console.WriteLine();
+            System.Console.WriteLine("0. QUITAR");
+            System.Console.WriteLine("1. LISTAR TUDO");
+            System.Console.WriteLine("2. LISTAR POR NOME");
+            System.Console.WriteLine("3. DELETAR POR ID");
+            System.Console.WriteLine("4. DADOS ALEATÓRIOS");
+            System.Console.WriteLine("5. INSERIR");
 
             do
             {
-                System.Console.WriteLine("===============================");
-                System.Console.WriteLine("======== TESTES DE WCF ========");
-                System.Console.WriteLine("===============================");
                 System.Console.WriteLine();
-                System.Console.WriteLine("0. QUITAR");
-                System.Console.WriteLine("1. LISTAR TUDO");
-                System.Console.WriteLine("2. LISTAR POR NOME");
-                System.Console.WriteLine("3. DELETAR POR ID");
-                System.Console.WriteLine("4. DADOS ALEATÓRIOS");
-
+                System.Console.Write("Digite a opção: ");
                 Opt = ConvertInput<short>(out Error);
+                ChoseOption(Opt, Error);
 
-                if (Opt < 0 || Opt > 4 || Error)
-                {
-                    WrongOutputWarning();
-                    continue;
-                }
-                else if (Opt == 0)
-                {
-                    System.Console.WriteLine("Adeus...");
-                    return;
-                }
-                else if (Opt == 1)
-                {
-                    IList<Person> People = wcfClient.GetAll();
-                    ListPeopleOnScreen(People);
-                }
-                else if (Opt == 2)
-                {
-                    System.Console.Write("Digite o nome: ");
-                    Name = System.Console.ReadLine();
+            } while (!Finish);
+        }
 
-                    IList<Person> People = wcfClient.GetByName(Name);
-                    ListPeopleOnScreen(People);
-                }
-                else if (Opt == 3)
-                {
-                    System.Console.Write("Digite o ID: ");
-                    Id = ConvertInput<int>(out Error);
+        private static void ChoseOption(short Opt, bool Error)
+        {
+            if (Opt < 0 || Opt > 5 || Error)
+            {
+                WrongOutputWarning();
+                return;
+            }
 
-                    if(Error)
-                    {
-                        WrongOutputWarning();
-                        continue;
-                    }
-                    
-                    if(wcfClient.ExcludePerson(Id))
-                    {
-                        System.Console.WriteLine("{0} Deletado com sucesso!", Id);
-                    }
-                    else
-                    {
-                        System.Console.WriteLine("Falha ao deletar");
-                    }
-                }
-                else if(Opt == 4)
-                {
-                    StubClass Stub = wcfClient.GetStub();
-                    ShowStubData(Stub);
-                }
+            switch (Opt)
+            {
+                case 0:
+                    Quit();
+                    break;
+                case 1:
+                    ListPeople();
+                    break;
+                case 2:
+                    ListPeopleByName();
+                    break;
+                case 3:
+                    DeleteById();
+                    break;
+                case 4:
+                    GetStubData();
+                    break;
+                case 5:
+                    InsertPerson();
+                    break;
+                default:
+                    break;
+            }
+        }
 
-                System.Console.ReadKey();
-                System.Console.Clear();
+        private static void Quit()
+        {
+            System.Console.WriteLine();
+            System.Console.WriteLine("Adeus...");
+            System.Console.WriteLine();
+            Finish = true;
+        }
 
-            } while (true);
+        private static void ListPeople()
+        {
+            IList<Person> People = wcfClient.GetAll();
+            ListPeopleOnScreen(People);
+        }
+
+        private static void ListPeopleByName()
+        {
+            System.Console.Write("Digite o nome: ");
+            string Name = System.Console.ReadLine();
+
+            IList<Person> People = wcfClient.GetByName(Name);
+            ListPeopleOnScreen(People);
+        }
+
+        private static void DeleteById()
+        {
+            bool Error = false;
+            int Id = 0;
+
+            System.Console.Write("Digite o ID: ");
+            Id = ConvertInput<int>(out Error);
+
+            if (Error)
+            {
+                WrongOutputWarning();
+                return;
+            }
+
+            if (wcfClient.ExcludePerson(Id))
+            {
+                System.Console.WriteLine("{0} Deletado com sucesso!", Id);
+            }
+            else
+            {
+                System.Console.WriteLine("Falha ao deletar");
+            }
+        }
+
+        private static void GetStubData()
+        {
+            StubClass Stub = wcfClient.GetStub();
+            ShowStubData(Stub);
+        }
+
+        private static void InsertPerson()
+        {
+            throw new NotImplementedException();
         }
 
         private static void ShowStubData(StubClass Stub)
