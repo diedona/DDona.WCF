@@ -131,7 +131,38 @@ namespace DDona.WCF.Console
 
         private static void InsertPerson()
         {
-            throw new NotImplementedException();
+            string Name;
+            DateTime BirthDay;
+            string Quote;
+            bool Error = false;
+
+            System.Console.Write("Nome: ");
+            Name = System.Console.ReadLine();
+
+            do
+            {
+                System.Console.Write("Data de Aniversário: (dd/mm/yyyy) ");
+                BirthDay = ConvertInput<DateTime>(out Error);
+            } while (Error);
+
+            System.Console.Write("Citação: ");
+            Quote = System.Console.ReadLine();
+
+            Person Person = new Person()
+            {
+                Name = Name,
+                Quote = Quote,
+                BirthDay = BirthDay
+            };
+
+            if(!wcfClient.SavePerson(Person))
+            {
+                System.Console.WriteLine("Falha ao incluir pessoa!");
+            }
+            else
+            {
+                System.Console.WriteLine("'{0}' incluído com sucesso!", Person.Name);
+            }
         }
 
         private static void ShowStubData(StubClass Stub)
@@ -144,8 +175,6 @@ namespace DDona.WCF.Console
         private static void WrongOutputWarning()
         {
             System.Console.WriteLine("Jegue de teta curta, você entrou uma opção inválida.");
-            System.Console.ReadKey();
-            System.Console.Clear();
         }
 
         private static void ListPeopleOnScreen(IList<Person> People)
