@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDona.WCF.Model", "DDona.WCF.Model\DDona.WCF.Model.csproj", "{25EAFD21-9A5D-49FE-91F5-99E4D02E506C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDona.WCF.BusinessService", "DDona.WCF.Service\DDona.WCF.BusinessService.csproj", "{37838D6F-4FCC-4D6F-BC35-30A4F9884AFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDona.WCF.Infra", "DDona.WCF.Infra\DDona.WCF.Infra.csproj", "{7A004DEF-5BA9-4985-B195-C75D876100F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDona.WCF.WService", "DDona.WCF.WService\DDona.WCF.WService.csproj", "{854541D0-DCE0-4AF7-B58F-64BB49E2F4DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDona.WCF.Console", "DDona.WCF.Console\DDona.WCF.Console.csproj", "{899EEF7B-9B1E-45FC-8FA7-DB8170413E20}"
+	ProjectSection(ProjectDependencies) = postProject
+		{854541D0-DCE0-4AF7-B58F-64BB49E2F4DD} = {854541D0-DCE0-4AF7-B58F-64BB49E2F4DD}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25EAFD21-9A5D-49FE-91F5-99E4D02E506C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25EAFD21-9A5D-49FE-91F5-99E4D02E506C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25EAFD21-9A5D-49FE-91F5-99E4D02E506C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25EAFD21-9A5D-49FE-91F5-99E4D02E506C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37838D6F-4FCC-4D6F-BC35-30A4F9884AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37838D6F-4FCC-4D6F-BC35-30A4F9884AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37838D6F-4FCC-4D6F-BC35-30A4F9884AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37838D6F-4FCC-4D6F-BC35-30A4F9884AFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A004DEF-5BA9-4985-B195-C75D876100F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A004DEF-5BA9-4985-B195-C75D876100F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A004DEF-5BA9-4985-B195-C75D876100F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A004DEF-5BA9-4985-B195-C75D876100F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{854541D0-DCE0-4AF7-B58F-64BB49E2F4DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{854541D0-DCE0-4AF7-B58F-64BB49E2F4DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{854541D0-DCE0-4AF7-B58F-64BB49E2F4DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{854541D0-DCE0-4AF7-B58F-64BB49E2F4DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{899EEF7B-9B1E-45FC-8FA7-DB8170413E20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{899EEF7B-9B1E-45FC-8FA7-DB8170413E20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{899EEF7B-9B1E-45FC-8FA7-DB8170413E20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{899EEF7B-9B1E-45FC-8FA7-DB8170413E20}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
