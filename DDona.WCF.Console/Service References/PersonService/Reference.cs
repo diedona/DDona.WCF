@@ -154,6 +154,67 @@ namespace DDona.WCF.Console.PersonService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="StubClass", Namespace="http://schemas.datacontract.org/2004/07/DDona.WCF.WService.Custom")]
+    [System.SerializableAttribute()]
+    public partial class StubClass : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime CurrentDateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RandomNumberField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime CurrentDateTime {
+            get {
+                return this.CurrentDateTimeField;
+            }
+            set {
+                if ((this.CurrentDateTimeField.Equals(value) != true)) {
+                    this.CurrentDateTimeField = value;
+                    this.RaisePropertyChanged("CurrentDateTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RandomNumber {
+            get {
+                return this.RandomNumberField;
+            }
+            set {
+                if ((this.RandomNumberField.Equals(value) != true)) {
+                    this.RandomNumberField = value;
+                    this.RaisePropertyChanged("RandomNumber");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="PersonService.IPersonService")]
     public interface IPersonService {
@@ -175,6 +236,18 @@ namespace DDona.WCF.Console.PersonService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/GetByName", ReplyAction="http://tempuri.org/IPersonService/GetByNameResponse")]
         System.Threading.Tasks.Task<DDona.WCF.Console.PersonService.Person[]> GetByNameAsync(string Name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/ExcludePerson", ReplyAction="http://tempuri.org/IPersonService/ExcludePersonResponse")]
+        bool ExcludePerson(int Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/ExcludePerson", ReplyAction="http://tempuri.org/IPersonService/ExcludePersonResponse")]
+        System.Threading.Tasks.Task<bool> ExcludePersonAsync(int Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/GetStub", ReplyAction="http://tempuri.org/IPersonService/GetStubResponse")]
+        DDona.WCF.Console.PersonService.StubClass GetStub();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPersonService/GetStub", ReplyAction="http://tempuri.org/IPersonService/GetStubResponse")]
+        System.Threading.Tasks.Task<DDona.WCF.Console.PersonService.StubClass> GetStubAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -226,6 +299,22 @@ namespace DDona.WCF.Console.PersonService {
         
         public System.Threading.Tasks.Task<DDona.WCF.Console.PersonService.Person[]> GetByNameAsync(string Name) {
             return base.Channel.GetByNameAsync(Name);
+        }
+        
+        public bool ExcludePerson(int Id) {
+            return base.Channel.ExcludePerson(Id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ExcludePersonAsync(int Id) {
+            return base.Channel.ExcludePersonAsync(Id);
+        }
+        
+        public DDona.WCF.Console.PersonService.StubClass GetStub() {
+            return base.Channel.GetStub();
+        }
+        
+        public System.Threading.Tasks.Task<DDona.WCF.Console.PersonService.StubClass> GetStubAsync() {
+            return base.Channel.GetStubAsync();
         }
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:4376/PersonService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DDona.WCF.Model" />
+  <xs:import schemaLocation="http://localhost:4376/PersonService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/DDona.WCF.WService.Custom" />
   <xs:element name="SavePerson">
     <xs:complexType>
       <xs:sequence>
@@ -38,6 +39,32 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DDona.WCF.Model" minOccurs="0" name="GetByNameResult" nillable="true" type="q3:ArrayOfPerson" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExcludePerson">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExcludePersonResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ExcludePersonResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStub">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStubResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DDona.WCF.WService.Custom" minOccurs="0" name="GetStubResult" nillable="true" type="q4:StubClass" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -53,7 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Properties\DataSources\DDona.WCF.Model.Person.datasource" />
     <None Include="Service References\PersonService\DDona.WCF.Console.PersonService.Person.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PersonService\DDona.WCF.Console.PersonService.StubClass.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\PersonService\PersonService.wsdl" />
@@ -83,16 +87,13 @@
     <None Include="Service References\PersonService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\PersonService\PersonService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\PersonService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DDona.WCF.Model\DDona.WCF.Model.csproj">
-      <Project>{25eafd21-9a5d-49fe-91f5-99e4d02e506c}</Project>
-      <Name>DDona.WCF.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

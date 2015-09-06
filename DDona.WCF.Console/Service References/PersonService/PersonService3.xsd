@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DDona.WCF.WService.Custom" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DDona.WCF.WService.Custom" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="StubClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CurrentDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RandomNumber" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StubClass" nillable="true" type="tns:StubClass" />
+</xs:schema>

@@ -22,12 +22,15 @@ namespace DDona.WCF.BusinessService
 
         public IList<Person> Get()
         {
-            return _db.People;
+            return _db.People.Where(x => x.Status).ToList();
         }
 
         public IList<Person> Get(string Name)
         {
-            return _db.People.Where(x => x.Name.StartsWith(Name)).ToList();
+            return _db.People
+                .Where(x => x.Name.StartsWith(Name))
+                .Where(x => x.Status)
+                .ToList();
         }
 
         public bool Add(Person Person)
@@ -46,11 +49,19 @@ namespace DDona.WCF.BusinessService
 
         public bool Delete(int Id)
         {
-            Person Person = (_db.People.Where(x => x.Id == Id)).FirstOrDefault();
+            Person Person = (_db.People
+                .Where(x => x.Id == Id))
+                .FirstOrDefault();
 
             if(Person == null)
             {
                 Errors.Add("Item não encontrado.");
+                return false;
+            }
+
+            if(Person.Status == false)
+            {
+                Errors.Add("Item já deletado.");
                 return false;
             }
 

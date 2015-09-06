@@ -9,12 +9,19 @@ namespace DDona.WCF.Console
 {
     class Program
     {
+        /*
+         * ESTE PROJETO SÓ REFERENCIA O WSERVICE
+         * OS MODELS QUE USAMOS NÃO SÃO DO DDONA.WCF.MODEL, SÃO OS PROXIES QUE O DDONA.WCF.WSERVICE GEROU!
+         */ 
+
         static void Main(string[] args)
         {
             PersonServiceClient wcfClient = new PersonServiceClient();
 
             short Opt = 0;
             string Name = string.Empty;
+            int Id = 0;
+            bool Error = false;
 
             do
             {
@@ -25,14 +32,14 @@ namespace DDona.WCF.Console
                 System.Console.WriteLine("0. QUITAR");
                 System.Console.WriteLine("1. LISTAR TUDO");
                 System.Console.WriteLine("2. LISTAR POR NOME");
+                System.Console.WriteLine("3. DELETAR POR ID");
+                System.Console.WriteLine("4. DADOS ALEATÓRIOS");
 
-                Opt = GetShortInput();
+                Opt = ConvertInput<short>(out Error);
 
-                if (Opt < 0)
+                if (Opt < 0 || Opt > 4 || Error)
                 {
-                    System.Console.WriteLine("Jegue de teta curta, você entrou uma opção inválida.");
-                    System.Console.ReadKey();
-                    System.Console.Clear();
+                    WrongOutputWarning();
                     continue;
                 }
                 else if (Opt == 0)
@@ -45,7 +52,7 @@ namespace DDona.WCF.Console
                     IList<Person> People = wcfClient.GetAll();
                     ListPeopleOnScreen(People);
                 }
-                else if(Opt == 2)
+                else if (Opt == 2)
                 {
                     System.Console.Write("Digite o nome: ");
                     Name = System.Console.ReadLine();
@@ -53,11 +60,50 @@ namespace DDona.WCF.Console
                     IList<Person> People = wcfClient.GetByName(Name);
                     ListPeopleOnScreen(People);
                 }
+                else if (Opt == 3)
+                {
+                    System.Console.Write("Digite o ID: ");
+                    Id = ConvertInput<int>(out Error);
+
+                    if(Error)
+                    {
+                        WrongOutputWarning();
+                        continue;
+                    }
+                    
+                    if(wcfClient.ExcludePerson(Id))
+                    {
+                        System.Console.WriteLine("{0} Deletado com sucesso!", Id);
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("Falha ao deletar");
+                    }
+                }
+                else if(Opt == 4)
+                {
+                    StubClass Stub = wcfClient.GetStub();
+                    ShowStubData(Stub);
+                }
 
                 System.Console.ReadKey();
                 System.Console.Clear();
 
             } while (true);
+        }
+
+        private static void ShowStubData(StubClass Stub)
+        {
+            System.Console.WriteLine();
+
+            System.Console.WriteLine("Data: {0}, Número: {1}", Stub.CurrentDateTime.ToString(), Stub.RandomNumber);
+        }
+
+        private static void WrongOutputWarning()
+        {
+            System.Console.WriteLine("Jegue de teta curta, você entrou uma opção inválida.");
+            System.Console.ReadKey();
+            System.Console.Clear();
         }
 
         private static void ListPeopleOnScreen(IList<Person> People)
@@ -71,18 +117,19 @@ namespace DDona.WCF.Console
             }
         }
 
-        private static short GetShortInput()
+        private static T ConvertInput<T>(out bool Error)
         {
             string Input = System.Console.ReadLine();
-            short Opt;
+            Error = false;
 
-            if (short.TryParse(Input, out Opt))
+            try
             {
-                return Opt;
+                return (T)Convert.ChangeType(Input, typeof(T));
             }
-            else
+            catch (Exception)
             {
-                return -1;
+                Error = true;
+                return default(T);
             }
         }
     }

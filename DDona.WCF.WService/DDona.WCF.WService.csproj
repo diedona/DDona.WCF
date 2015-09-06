@@ -63,6 +63,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Custom\StubClass.cs" />
     <Compile Include="PersonService.svc.cs">
       <DependentUpon>PersonService.svc</DependentUpon>
     </Compile>

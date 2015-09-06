@@ -22,11 +22,12 @@
     <MetadataSource Address="http://localhost:4376/PersonService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="PersonService.xsd" MetadataType="Schema" ID="197f833d-a6a7-4699-a234-4997e3cfc953" SourceId="1" SourceUrl="http://localhost:4376/PersonService.svc?xsd=xsd1" />
-    <MetadataFile FileName="PersonService.disco" MetadataType="Disco" ID="6d51eea5-58a3-40cb-be56-a5ad4977ccf9" SourceId="1" SourceUrl="http://localhost:4376/PersonService.svc?disco" />
+    <MetadataFile FileName="PersonService2.xsd" MetadataType="Schema" ID="7f80e40a-6afb-4b7e-b458-bf640cfa00f6" SourceId="1" SourceUrl="http://localhost:4376/PersonService.svc?xsd=xsd0" />
     <MetadataFile FileName="PersonService1.xsd" MetadataType="Schema" ID="efe89468-ceac-4eba-9767-26bffbee4699" SourceId="1" SourceUrl="http://localhost:4376/PersonService.svc?xsd=xsd2" />
     <MetadataFile FileName="PersonService.wsdl" MetadataType="Wsdl" ID="7047a30f-0e50-4244-9254-ccc5a72bea92" SourceId="1" SourceUrl="http://localhost:4376/PersonService.svc?wsdl" />
-    <MetadataFile FileName="PersonService2.xsd" MetadataType="Schema" ID="7f80e40a-6afb-4b7e-b458-bf640cfa00f6" SourceId="1" SourceUrl="http://localhost:4376/PersonService.svc?xsd=xsd0" />
+    <MetadataFile FileName="PersonService.xsd" MetadataType="Schema" ID="197f833d-a6a7-4699-a234-4997e3cfc953" SourceId="1" SourceUrl="http://localhost:4376/PersonService.svc?xsd=xsd1" />
+    <MetadataFile FileName="PersonService3.xsd" MetadataType="Schema" ID="3ed4f6d0-9923-43f3-bb58-d9b7019589c4" SourceId="1" SourceUrl="http://localhost:4376/PersonService.svc?xsd=xsd3" />
+    <MetadataFile FileName="PersonService.disco" MetadataType="Disco" ID="6d51eea5-58a3-40cb-be56-a5ad4977ccf9" SourceId="1" SourceUrl="http://localhost:4376/PersonService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

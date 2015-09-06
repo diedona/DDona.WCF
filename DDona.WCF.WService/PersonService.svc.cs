@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DDona.WCF.WService.Custom;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -31,6 +32,16 @@ namespace DDona.WCF.WService
         public IList<Model.Person> GetByName(string Name)
         {
             return PersonBLL.Get(Name);
+        }
+
+        public bool ExcludePerson(int Id)
+        {
+            return PersonBLL.Delete(Id);
+        }
+
+        public StubClass GetStub()
+        {
+            return new StubClass { CurrentDateTime = DateTime.Now, RandomNumber = new Random().Next() };
         }
     }
 }
