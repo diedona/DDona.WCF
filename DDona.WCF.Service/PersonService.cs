@@ -43,8 +43,7 @@ namespace DDona.WCF.BusinessService
 
             PrepareNewPerson(Person);
             _db.People.Add(Person);
-
-            return true;
+            return _db.Commit();
         }
 
         public bool Delete(int Id)
@@ -66,7 +65,7 @@ namespace DDona.WCF.BusinessService
             }
 
             Person.Status = false;
-            return true;
+            return _db.Commit();
         }
 
         private int GetLastId()

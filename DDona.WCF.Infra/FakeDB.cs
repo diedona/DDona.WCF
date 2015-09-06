@@ -1,6 +1,8 @@
 ﻿using DDona.WCF.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +11,58 @@ namespace DDona.WCF.Infra
 {
     public class FakeDB
     {
+        private const string FOLDER_NAME = "DataStorage";
+        private const string DB_NAME = "DB.json";
+
+        private string FolderPath;
+        private string FullPath;
+
         public IList<Person> People;
 
         public FakeDB()
         {
-            People = LoadContent();
+            SetPaths();
+            LoadContentFromFile();
+        }
+
+        public bool Commit()
+        {
+            string strObj = JsonConvert.SerializeObject(People, Formatting.None);
+
+            SetFolder();
+
+            using (FileStream fw = File.OpenWrite(FullPath))
+            {
+                byte[] byteObj = Encoding.UTF8.GetBytes(strObj);
+                fw.Seek(0, SeekOrigin.Begin);
+                fw.Write(byteObj, 0, byteObj.Count());
+                fw.Flush();
+            }
+
+            return true;
+        }
+
+        private void SetFolder()
+        {
+            if (!Directory.Exists(FolderPath))
+            {
+                Directory.CreateDirectory(FolderPath);
+            }
+        }
+
+        private bool LoadContentFromFile()
+        {
+            SetFolder();
+            string strJson = File.ReadAllText(FullPath);
+            People = JsonConvert.DeserializeObject<List<Person>>(strJson);
+
+            return true;
+        }
+
+        private void SetPaths()
+        {
+            this.FolderPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FOLDER_NAME);
+            this.FullPath = System.IO.Path.Combine(FolderPath, DB_NAME);
         }
 
         private IList<Person> LoadContent()
