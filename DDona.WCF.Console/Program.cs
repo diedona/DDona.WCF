@@ -11,7 +11,7 @@ namespace DDona.WCF.Console
     {
         /*
          * ESTE PROJETO SÓ REFERENCIA O WSERVICE
-         * OS MODELS QUE USAMOS NÃO SÃO DO DDONA.WCF.MODEL, SÃO OS PROXIES QUE O DDONA.WCF.WSERVICE GEROU!
+         * OS MODELS QUE USAMOS >NÃO< SÃO DO DDONA.WCF.MODEL, SÃO OS PROXIES QUE O DDONA.WCF.WSERVICE GEROU!
          */
 
         private static bool Finish = false;
